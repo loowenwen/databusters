@@ -1,4 +1,4 @@
-,date,gdp_change,consump_change,invest_change,govt_change,exports_change,imports_change,vix,sp500,umc_sentiment,inflation_change,nominalint_change,realint_change
+,date,gdp_change,consump_change,invest_change,govt_change,exports_change,imports_change,vix,sp500,umc_sentiment,inflation_change,nominal_int_change,real_int_change
 0,3/1/1959,,,,,,,,,,,,
 1,6/1/1959,2.2534335641617664,1.544420669371549,7.778660670510074,1.2312380378954213,-0.7982429735665764,4.86573111573112,,3.584507004198745,,,19.97276264591441,
 2,9/1/1959,0.06972672666276658,1.0446711628257388,-6.458039215686274,0.8514445770008816,9.64363178656118,0.954096004361582,,2.127230392284707,0.0,199.48352976419184,16.00233516038012,4.772144500578657
