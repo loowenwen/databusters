@@ -1,0 +1,701 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/loowenwen/Desktop/Databusters/stata_attempt.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}11 Feb 2025, 22:58:42
+{txt}
+{com}. 
+. ********************************************************************************
+. 
+. * import quarterly_final csv file
+. import delimited "quarterly_final.csv", clear
+{res}{txt}(encoding automatically selected: ISO-8859-1)
+{text}(15 vars, 263 obs)
+
+{com}. save "quarterly_final.dta", replace
+{txt}{p 0 4 2}
+file {bf}
+quarterly_final.dta{rm}
+saved
+{p_end}
+
+{com}. use quarterly_final.dta
+{txt}
+{com}. 
+. ** real gdp indicators
+. regress gdp real_consumption real_priv_investment government_expenditure exports imports
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       263
+{txt}{hline 13}{c +}{hline 34}   F(5, 257)       > {res} 99999.00
+{txt}       Model {c |} {res} 8.7488e+09         5  1.7498e+09   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 361918.767       257  1408.24423   {txt}R-squared       ={res}    1.0000
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    1.0000
+{txt}       Total {c |} {res} 8.7491e+09       262  33393640.5   {txt}Root MSE        =   {res} 37.527
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          gdp{col 15}{c |} Coefficient{col 27}  Std. err.{col 39}      t{col 47}   P>|t|{col 55}     [95% con{col 68}f. interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+real_consum~n {c |}{col 15}{res}{space 2} 1.021926{col 27}{space 2} .0117083{col 38}{space 1}   87.28{col 47}{space 3}0.000{col 55}{space 4}   .99887{col 68}{space 3} 1.044983
+{txt}real_priv_i~t {c |}{col 15}{res}{space 2} 1.080246{col 27}{space 2} .0195111{col 38}{space 1}   55.37{col 47}{space 3}0.000{col 55}{space 4} 1.041824{col 68}{space 3} 1.118668
+{txt}government_~e {c |}{col 15}{res}{space 2} 1.013436{col 27}{space 2} .0229502{col 38}{space 1}   44.16{col 47}{space 3}0.000{col 55}{space 4} .9682417{col 68}{space 3}  1.05863
+{txt}{space 6}exports {c |}{col 15}{res}{space 2} 1.080787{col 27}{space 2} .0231529{col 38}{space 1}   46.68{col 47}{space 3}0.000{col 55}{space 4} 1.035194{col 68}{space 3} 1.126381
+{txt}{space 6}imports {c |}{col 15}{res}{space 2}-1.186271{col 27}{space 2} .0244903{col 38}{space 1}  -48.44{col 47}{space 3}0.000{col 55}{space 4}-1.234499{col 68}{space 3}-1.138044
+{txt}{space 8}_cons {c |}{col 15}{res}{space 2} -241.945{col 27}{space 2} 16.97763{col 38}{space 1}  -14.25{col 47}{space 3}0.000{col 55}{space 4} -275.378{col 68}{space 3} -208.512
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. *** root mse = 37.527
+. 
+. ** include real interest rate
+. regress gdp real_consumption real_priv_investment government_expenditure exports imports real_interest_rate
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       262
+{txt}{hline 13}{c +}{hline 34}   F(6, 255)       > {res} 99999.00
+{txt}       Model {c |} {res} 8.6830e+09         6  1.4472e+09   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 333618.219       255  1308.30674   {txt}R-squared       ={res}    1.0000
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    1.0000
+{txt}       Total {c |} {res} 8.6834e+09       261  33269591.9   {txt}Root MSE        =   {res} 36.171
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          gdp{col 15}{c |} Coefficient{col 27}  Std. err.{col 39}      t{col 47}   P>|t|{col 55}     [95% con{col 68}f. interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+real_consum~n {c |}{col 15}{res}{space 2} 1.012101{col 27}{space 2} .0114813{col 38}{space 1}   88.15{col 47}{space 3}0.000{col 55}{space 4} .9894909{col 68}{space 3} 1.034711
+{txt}real_priv_i~t {c |}{col 15}{res}{space 2} 1.054791{col 27}{space 2} .0196285{col 38}{space 1}   53.74{col 47}{space 3}0.000{col 55}{space 4} 1.016136{col 68}{space 3} 1.093445
+{txt}government_~e {c |}{col 15}{res}{space 2} 1.025585{col 27}{space 2} .0223044{col 38}{space 1}   45.98{col 47}{space 3}0.000{col 55}{space 4} .9816611{col 68}{space 3}  1.06951
+{txt}{space 6}exports {c |}{col 15}{res}{space 2} 1.087297{col 27}{space 2} .0223625{col 38}{space 1}   48.62{col 47}{space 3}0.000{col 55}{space 4} 1.043259{col 68}{space 3} 1.131336
+{txt}{space 6}imports {c |}{col 15}{res}{space 2} -1.12859{col 27}{space 2} .0267619{col 38}{space 1}  -42.17{col 47}{space 3}0.000{col 55}{space 4}-1.181293{col 68}{space 3}-1.075887
+{txt}real_intere~e {c |}{col 15}{res}{space 2} 4.931917{col 27}{space 2} 1.061958{col 38}{space 1}    4.64{col 47}{space 3}0.000{col 55}{space 4} 2.840592{col 68}{space 3} 7.023241
+{txt}{space 8}_cons {c |}{col 15}{res}{space 2}-252.0795{col 27}{space 2} 16.67474{col 38}{space 1}  -15.12{col 47}{space 3}0.000{col 55}{space 4}-284.9172{col 68}{space 3}-219.2417
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. *** root mse = 36.171
+. 
+. ** include financial indicators + consumer sentiment
+. regress gdp real_consumption real_priv_investment government_expenditure exports imports real_interest_rate vix sp500 umc_sentiment
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       249
+{txt}{hline 13}{c +}{hline 34}   F(9, 239)       > {res} 99999.00
+{txt}       Model {c |} {res} 7.8243e+09         9   869367468   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 222412.564       239  930.596503   {txt}R-squared       ={res}    1.0000
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    1.0000
+{txt}       Total {c |} {res} 7.8245e+09       248  31550522.7   {txt}Root MSE        =   {res} 30.506
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          gdp{col 15}{c |} Coefficient{col 27}  Std. err.{col 39}      t{col 47}   P>|t|{col 55}     [95% con{col 68}f. interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+real_consum~n {c |}{col 15}{res}{space 2}  1.04422{col 27}{space 2} .0117267{col 38}{space 1}   89.05{col 47}{space 3}0.000{col 55}{space 4} 1.021119{col 68}{space 3} 1.067321
+{txt}real_priv_i~t {c |}{col 15}{res}{space 2} 1.112008{col 27}{space 2} .0227073{col 38}{space 1}   48.97{col 47}{space 3}0.000{col 55}{space 4} 1.067276{col 68}{space 3}  1.15674
+{txt}government_~e {c |}{col 15}{res}{space 2} .9151751{col 27}{space 2} .0243344{col 38}{space 1}   37.61{col 47}{space 3}0.000{col 55}{space 4} .8672378{col 68}{space 3} .9631125
+{txt}{space 6}exports {c |}{col 15}{res}{space 2} 1.026756{col 27}{space 2} .0213373{col 38}{space 1}   48.12{col 47}{space 3}0.000{col 55}{space 4} .9847224{col 68}{space 3} 1.068789
+{txt}{space 6}imports {c |}{col 15}{res}{space 2}-1.126182{col 27}{space 2} .0239733{col 38}{space 1}  -46.98{col 47}{space 3}0.000{col 55}{space 4}-1.173408{col 68}{space 3}-1.078956
+{txt}real_intere~e {c |}{col 15}{res}{space 2} 3.872884{col 27}{space 2}  .975193{col 38}{space 1}    3.97{col 47}{space 3}0.000{col 55}{space 4} 1.951813{col 68}{space 3} 5.793955
+{txt}{space 10}vix {c |}{col 15}{res}{space 2} 1.033799{col 27}{space 2} .3345903{col 38}{space 1}    3.09{col 47}{space 3}0.002{col 55}{space 4} .3746766{col 68}{space 3} 1.692922
+{txt}{space 8}sp500 {c |}{col 15}{res}{space 2}-.0597409{col 27}{space 2} .0058801{col 38}{space 1}  -10.16{col 47}{space 3}0.000{col 55}{space 4}-.0713244{col 68}{space 3}-.0481575
+{txt}umc_sentiment {c |}{col 15}{res}{space 2}-.2570198{col 27}{space 2} .2161022{col 38}{space 1}   -1.19{col 47}{space 3}0.235{col 55}{space 4} -.682728{col 68}{space 3} .1686885
+{txt}{space 8}_cons {c |}{col 15}{res}{space 2}-198.9032{col 27}{space 2} 23.43245{col 38}{space 1}   -8.49{col 47}{space 3}0.000{col 55}{space 4}-245.0637{col 68}{space 3}-152.7427
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. *** root mse =  30.506
+. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       249{col 28}-2502.569{col 39}-1199.273{col 50}    10{col 58} 2418.546{col 69}  2453.72
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. 
+. * inspect data
+. describe 
+
+{txt}Contains data from {res}quarterly_final.dta
+{txt} Observations:{res}           263                  
+{txt}    Variables:{res}            15                  11 Feb 2025 22:58
+{txt}{hline}
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+{hline}
+{p 0 48}{res}{bind:v1             }{txt}{bind: int     }{bind:%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:date           }{txt}{bind: str9    }{bind:%9s       }{space 1}{bind:         }{bind:  }{res}{res}Date{p_end}
+{p 0 48}{bind:gdp            }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}GDP{p_end}
+{p 0 48}{bind:gdp_perc_change}{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}GDP_Perc_Change{p_end}
+{p 0 48}{bind:real_consumpt~n}{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Real_Consumption{p_end}
+{p 0 48}{bind:real_priv_inv~t}{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Real_Priv_Investment{p_end}
+{p 0 48}{bind:government_ex~e}{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Government_Expenditure{p_end}
+{p 0 48}{bind:exports        }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Exports{p_end}
+{p 0 48}{bind:imports        }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Imports{p_end}
+{p 0 48}{bind:vix            }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}VIX{p_end}
+{p 0 48}{bind:sp500          }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}S&P500{p_end}
+{p 0 48}{bind:umc_sentiment  }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}UMC_Sentiment{p_end}
+{p 0 48}{bind:inflation_rate }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Inflation_Rate{p_end}
+{p 0 48}{bind:nominal_inter~e}{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Nominal_Interest_Rate{p_end}
+{p 0 48}{bind:real_interest~e}{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Real_Interest_Rate{p_end}
+{txt}{hline}
+Sorted by: 
+
+{com}. summarize
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 10}v1 {c |}{res}        263         131    76.06576          0        262
+{txt}{space 8}date {c |}{res}          0
+{txt}{space 9}gdp {c |}{res}        263    11446.59    5778.723   3352.129   23400.29
+{txt}gdp_perc_c~e {c |}{res}        262    .7500863    1.066066  -7.908965   7.830225
+{txt}real_consu~n {c |}{res}        263    7501.728    4057.569   2039.017   16113.04
+{txt}{hline 13}{c +}{hline 57}
+real_priv_~t {c |}{res}        263     1762.13    1141.842     327.01   4377.736
+{txt}government~e {c |}{res}        263    2496.379    808.6513   1137.363   3966.247
+{txt}{space 5}exports {c |}{res}        263    1007.235    831.8748     88.981   2638.199
+{txt}{space 5}imports {c |}{res}        263    1264.252    1086.965    114.599   3707.429
+{txt}{space 9}vix {c |}{res}        249    19.29098    6.522408    10.1269    58.6937
+{txt}{hline 13}{c +}{hline 57}
+{space 7}sp500 {c |}{res}        263    937.7044     1167.61    55.3333   5545.823
+{txt}umc_sentim~t {c |}{res}        261    85.79962    12.50249       54.4      110.1
+{txt}inflation_~e {c |}{res}        262    .9164135    .7603436  -2.290175    3.94564
+{txt}nominal_in~e {c |}{res}        263    4.777213    3.609913        .06      17.78
+{txt}real_inter~e {c |}{res}        262    3.823521    3.146014  -2.040293   15.37445
+{txt}
+{com}. 
+. * find correlation of all other variables to `gdp_change'
+. ds gdp, not
+{txt}{col 1}v1{col 15}real_consu~n{col 29}exports{col 43}sp500{col 57}nominal_in~e
+{col 1}date{col 15}real_priv_~t{col 29}imports{col 43}umc_sentim~t{col 57}real_inter~e
+{col 1}gdp_perc_c~e{col 15}government~e{col 29}vix{col 43}inflation_~e
+
+{com}. local varlist = r(varlist)
+{txt}
+{com}. ** `correlate`' command computes the Pearson correlation coefficients
+. ** measures the strength and direction of a linear relationship between continuous variables, with values ranging from -1 to 1
+. foreach var of local varlist {c -(}
+{txt}  2{com}.     correlate gdp `var'
+{txt}  3{com}. {c )-}
+{txt}(obs=263)
+
+             {c |}      gdp       v1
+{hline 13}{c +}{hline 18}
+         gdp {c |}{res}   1.0000
+          {txt}v1 {c |}{res}   0.9888   1.0000
+
+{txt}(date ignored because string variable)
+(obs=263)
+
+             {c |}      gdp
+{hline 13}{c +}{hline 9}
+         gdp {c |}{res}   1.0000
+
+{txt}(obs=262)
+
+             {c |}      gdp gdp_pe~e
+{hline 13}{c +}{hline 18}
+         gdp {c |}{res}   1.0000
+{txt}gdp_perc_c~e {c |}{res}  -0.1228   1.0000
+
+{txt}(obs=263)
+
+             {c |}      gdp real_c~n
+{hline 13}{c +}{hline 18}
+         gdp {c |}{res}   1.0000
+{txt}real_consu~n {c |}{res}   0.9995   1.0000
+
+{txt}(obs=263)
+
+             {c |}      gdp real_p~t
+{hline 13}{c +}{hline 18}
+         gdp {c |}{res}   1.0000
+{txt}real_priv_~t {c |}{res}   0.9871   1.0000
+
+{txt}(obs=263)
+
+             {c |}      gdp govern~e
+{hline 13}{c +}{hline 18}
+         gdp {c |}{res}   1.0000
+{txt}government~e {c |}{res}   0.9812   1.0000
+
+{txt}(obs=263)
+
+             {c |}      gdp  exports
+{hline 13}{c +}{hline 18}
+         gdp {c |}{res}   1.0000
+     {txt}exports {c |}{res}   0.9839   1.0000
+
+{txt}(obs=263)
+
+             {c |}      gdp  imports
+{hline 13}{c +}{hline 18}
+         gdp {c |}{res}   1.0000
+     {txt}imports {c |}{res}   0.9867   1.0000
+
+{txt}(obs=249)
+
+             {c |}      gdp      vix
+{hline 13}{c +}{hline 18}
+         gdp {c |}{res}   1.0000
+         {txt}vix {c |}{res}   0.1119   1.0000
+
+{txt}(obs=263)
+
+             {c |}      gdp    sp500
+{hline 13}{c +}{hline 18}
+         gdp {c |}{res}   1.0000
+       {txt}sp500 {c |}{res}   0.8893   1.0000
+
+{txt}(obs=261)
+
+             {c |}      gdp umc_se~t
+{hline 13}{c +}{hline 18}
+         gdp {c |}{res}   1.0000
+{txt}umc_sentim~t {c |}{res}  -0.1751   1.0000
+
+{txt}(obs=262)
+
+             {c |}      gdp inflat~e
+{hline 13}{c +}{hline 18}
+         gdp {c |}{res}   1.0000
+{txt}inflation_~e {c |}{res}  -0.2460   1.0000
+
+{txt}(obs=263)
+
+             {c |}      gdp nomina~e
+{hline 13}{c +}{hline 18}
+         gdp {c |}{res}   1.0000
+{txt}nominal_in~e {c |}{res}  -0.5183   1.0000
+
+{txt}(obs=262)
+
+             {c |}      gdp real_i~e
+{hline 13}{c +}{hline 18}
+         gdp {c |}{res}   1.0000
+{txt}real_inter~e {c |}{res}  -0.5335   1.0000
+
+{txt}
+{com}. 
+. 
+. ********************************************************************************
+. 
+. * import quarterly_perc csv file
+. import delimited "quarterly_perc.csv", clear
+{res}{txt}(encoding automatically selected: ISO-8859-1)
+{text}(14 vars, 248 obs)
+
+{com}. save "quarterly_perc.dta", replace
+{txt}{p 0 4 2}
+file {bf}
+quarterly_perc.dta{rm}
+saved
+{p_end}
+
+{com}. use quarterly_perc.dta
+{txt}
+{com}. 
+. ** real gdp indicators
+. regress gdp_change consump_change invest_change govt_change exports_change imports_change
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       248
+{txt}{hline 13}{c +}{hline 34}   F(5, 242)       = {res}  5338.75
+{txt}       Model {c |} {res} 277.954478         5  55.5908955   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 2.51987648       242  .010412713   {txt}R-squared       ={res}    0.9910
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.9908
+{txt}       Total {c |} {res} 280.474354       247   1.1355237   {txt}Root MSE        =   {res} .10204
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   gdp_change{col 15}{c |} Coefficient{col 27}  Std. err.{col 39}      t{col 47}   P>|t|{col 55}     [95% con{col 68}f. interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+consump_cha~e {c |}{col 15}{res}{space 2} .6324521{col 27}{space 2} .0072902{col 38}{space 1}   86.75{col 47}{space 3}0.000{col 55}{space 4} .6180919{col 68}{space 3} .6468124
+{txt}invest_change {c |}{col 15}{res}{space 2} .1676679{col 27}{space 2} .0020631{col 38}{space 1}   81.27{col 47}{space 3}0.000{col 55}{space 4} .1636039{col 68}{space 3} .1717319
+{txt}{space 2}govt_change {c |}{col 15}{res}{space 2} .2346663{col 27}{space 2} .0069764{col 38}{space 1}   33.64{col 47}{space 3}0.000{col 55}{space 4} .2209242{col 68}{space 3} .2484085
+{txt}exports_cha~e {c |}{col 15}{res}{space 2} .0805634{col 27}{space 2} .0024472{col 38}{space 1}   32.92{col 47}{space 3}0.000{col 55}{space 4} .0757429{col 68}{space 3} .0853839
+{txt}imports_cha~e {c |}{col 15}{res}{space 2}-.0866884{col 27}{space 2} .0029376{col 38}{space 1}  -29.51{col 47}{space 3}0.000{col 55}{space 4}-.0924751{col 68}{space 3}-.0809018
+{txt}{space 8}_cons {c |}{col 15}{res}{space 2}-.0289958{col 27}{space 2} .0089192{col 38}{space 1}   -3.25{col 47}{space 3}0.001{col 55}{space 4}-.0465651{col 68}{space 3}-.0114266
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. *** root mse = .10571
+. 
+. ** include real interest rate
+. regress gdp_change consump_change invest_change govt_change exports_change imports_change real_int_change
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       248
+{txt}{hline 13}{c +}{hline 34}   F(6, 241)       = {res}  4430.91
+{txt}       Model {c |} {res} 277.954665         6  46.3257776   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 2.51968863       241   .01045514   {txt}R-squared       ={res}    0.9910
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.9908
+{txt}       Total {c |} {res} 280.474354       247   1.1355237   {txt}Root MSE        =   {res} .10225
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   gdp_change{col 15}{c |} Coefficient{col 27}  Std. err.{col 39}      t{col 47}   P>|t|{col 55}     [95% con{col 68}f. interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+consump_cha~e {c |}{col 15}{res}{space 2} .6324341{col 27}{space 2} .0073062{col 38}{space 1}   86.56{col 47}{space 3}0.000{col 55}{space 4} .6180419{col 68}{space 3} .6468263
+{txt}invest_change {c |}{col 15}{res}{space 2} .1676737{col 27}{space 2} .0020678{col 38}{space 1}   81.09{col 47}{space 3}0.000{col 55}{space 4} .1636005{col 68}{space 3}  .171747
+{txt}{space 2}govt_change {c |}{col 15}{res}{space 2} .2346546{col 27}{space 2} .0069911{col 38}{space 1}   33.56{col 47}{space 3}0.000{col 55}{space 4} .2208831{col 68}{space 3} .2484261
+{txt}exports_cha~e {c |}{col 15}{res}{space 2} .0805602{col 27}{space 2} .0024523{col 38}{space 1}   32.85{col 47}{space 3}0.000{col 55}{space 4} .0757296{col 68}{space 3} .0853909
+{txt}imports_cha~e {c |}{col 15}{res}{space 2}-.0866878{col 27}{space 2} .0029436{col 38}{space 1}  -29.45{col 47}{space 3}0.000{col 55}{space 4}-.0924863{col 68}{space 3}-.0808892
+{txt}real_int_ch~e {c |}{col 15}{res}{space 2} 6.07e-07{col 27}{space 2} 4.53e-06{col 38}{space 1}    0.13{col 47}{space 3}0.893{col 55}{space 4}-8.32e-06{col 68}{space 3} 9.54e-06
+{txt}{space 8}_cons {c |}{col 15}{res}{space 2}-.0289246{col 27}{space 2} .0089532{col 38}{space 1}   -3.23{col 47}{space 3}0.001{col 55}{space 4}-.0465611{col 68}{space 3}-.0112882
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. *** root mse = .10553
+. 
+. ** include consumer sentiment
+. regress gdp_change consump_change invest_change govt_change exports_change imports_change real_int_change umc_senti_change
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       248
+{txt}{hline 13}{c +}{hline 34}   F(7, 240)       = {res}  3797.73
+{txt}       Model {c |} {res} 277.964903         7  39.7092718   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 2.50945109       240  .010456046   {txt}R-squared       ={res}    0.9911
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.9908
+{txt}       Total {c |} {res} 280.474354       247   1.1355237   {txt}Root MSE        =   {res} .10225
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   gdp_change{col 15}{c |} Coefficient{col 27}  Std. err.{col 39}      t{col 47}   P>|t|{col 55}     [95% con{col 68}f. interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+consump_cha~e {c |}{col 15}{res}{space 2} .6306009{col 27}{space 2} .0075378{col 38}{space 1}   83.66{col 47}{space 3}0.000{col 55}{space 4} .6157522{col 68}{space 3} .6454495
+{txt}invest_change {c |}{col 15}{res}{space 2} .1674702{col 27}{space 2} .0020781{col 38}{space 1}   80.59{col 47}{space 3}0.000{col 55}{space 4} .1633765{col 68}{space 3} .1715638
+{txt}{space 2}govt_change {c |}{col 15}{res}{space 2} .2349903{col 27}{space 2} .0069996{col 38}{space 1}   33.57{col 47}{space 3}0.000{col 55}{space 4} .2212017{col 68}{space 3} .2487789
+{txt}exports_cha~e {c |}{col 15}{res}{space 2} .0806398{col 27}{space 2} .0024537{col 38}{space 1}   32.86{col 47}{space 3}0.000{col 55}{space 4} .0758063{col 68}{space 3} .0854734
+{txt}imports_cha~e {c |}{col 15}{res}{space 2}-.0865955{col 27}{space 2} .0029452{col 38}{space 1}  -29.40{col 47}{space 3}0.000{col 55}{space 4}-.0923973{col 68}{space 3}-.0807937
+{txt}real_int_ch~e {c |}{col 15}{res}{space 2} 5.63e-07{col 27}{space 2} 4.53e-06{col 38}{space 1}    0.12{col 47}{space 3}0.901{col 55}{space 4}-8.37e-06{col 68}{space 3} 9.49e-06
+{txt}umc_senti_c~e {c |}{col 15}{res}{space 2} .0009971{col 27}{space 2} .0010077{col 38}{space 1}    0.99{col 47}{space 3}0.323{col 55}{space 4} -.000988{col 68}{space 3} .0029823
+{txt}{space 8}_cons {c |}{col 15}{res}{space 2}-.0277582{col 27}{space 2} .0090308{col 38}{space 1}   -3.07{col 47}{space 3}0.002{col 55}{space 4} -.045548{col 68}{space 3}-.0099684
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. *** root mse = .10559
+. 
+. ** include financial indicators
+. regress gdp_change consump_change invest_change govt_change exports_change imports_change real_int_change vix_change sp500_change umc_senti_change
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       248
+{txt}{hline 13}{c +}{hline 34}   F(9, 238)       = {res}  2974.69
+{txt}       Model {c |} {res} 278.002955         9  30.8892173   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 2.47139857       238  .010384028   {txt}R-squared       ={res}    0.9912
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.9909
+{txt}       Total {c |} {res} 280.474354       247   1.1355237   {txt}Root MSE        =   {res}  .1019
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   gdp_change{col 15}{c |} Coefficient{col 27}  Std. err.{col 39}      t{col 47}   P>|t|{col 55}     [95% con{col 68}f. interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+consump_cha~e {c |}{col 15}{res}{space 2} .6325605{col 27}{space 2} .0076425{col 38}{space 1}   82.77{col 47}{space 3}0.000{col 55}{space 4}  .617505{col 68}{space 3}  .647616
+{txt}invest_change {c |}{col 15}{res}{space 2} .1675523{col 27}{space 2} .0020714{col 38}{space 1}   80.89{col 47}{space 3}0.000{col 55}{space 4} .1634717{col 68}{space 3} .1716329
+{txt}{space 2}govt_change {c |}{col 15}{res}{space 2} .2352212{col 27}{space 2}  .006977{col 38}{space 1}   33.71{col 47}{space 3}0.000{col 55}{space 4} .2214766{col 68}{space 3} .2489659
+{txt}exports_cha~e {c |}{col 15}{res}{space 2} .0811964{col 27}{space 2} .0024876{col 38}{space 1}   32.64{col 47}{space 3}0.000{col 55}{space 4} .0762959{col 68}{space 3} .0860969
+{txt}imports_cha~e {c |}{col 15}{res}{space 2}-.0870217{col 27}{space 2}   .00296{col 38}{space 1}  -29.40{col 47}{space 3}0.000{col 55}{space 4}-.0928529{col 68}{space 3}-.0811905
+{txt}real_int_ch~e {c |}{col 15}{res}{space 2} 3.55e-07{col 27}{space 2} 4.52e-06{col 38}{space 1}    0.08{col 47}{space 3}0.937{col 55}{space 4}-8.55e-06{col 68}{space 3} 9.26e-06
+{txt}{space 3}vix_change {c |}{col 15}{res}{space 2}-.0003935{col 27}{space 2} .0003278{col 38}{space 1}   -1.20{col 47}{space 3}0.231{col 55}{space 4}-.0010393{col 68}{space 3} .0002524
+{txt}{space 1}sp500_change {c |}{col 15}{res}{space 2}-.0026581{col 27}{space 2} .0014226{col 38}{space 1}   -1.87{col 47}{space 3}0.063{col 55}{space 4}-.0054605{col 68}{space 3} .0001444
+{txt}umc_senti_c~e {c |}{col 15}{res}{space 2} .0016277{col 27}{space 2} .0011022{col 38}{space 1}    1.48{col 47}{space 3}0.141{col 55}{space 4}-.0005437{col 68}{space 3} .0037991
+{txt}{space 8}_cons {c |}{col 15}{res}{space 2}-.0234787{col 27}{space 2}  .009308{col 38}{space 1}   -2.52{col 47}{space 3}0.012{col 55}{space 4}-.0418152{col 68}{space 3}-.0051421
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. *** root mse = .1019
+. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       248{col 28}-367.1554{col 39} 219.5752{col 50}    10{col 58}-419.1503{col 69} -384.016
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. 
+. ** predict value for historical
+. predict gdp_forecast
+{txt}(option {bf:xb} assumed; fitted values)
+
+{com}. 
+. 
+. ********************************************************************************
+. 
+. * import quarterly_perc csv file
+. use quarterly_perc.dta, replace
+{txt}
+{com}. 
+. * set time variable in stata
+. ** convert the date column of string objects into date objects
+. gen date_var = date(date, "MDY")
+{txt}
+{com}. gen quarter_date = qofd(date_var)
+{txt}
+{com}. format quarter_date %tq
+{txt}
+{com}. tsset quarter_date, quarterly
+{res}
+{p 0 15 2}{txt:Time variable: }{res:quarter_date}{txt:, }{res:{bind:1962q4}}{txt: to }{res:{bind:2024q3}}{p_end}
+{txt}{col 9}Delta: {res}1 quarter
+{txt}
+{com}. 
+. * arima model
+. dfuller gdp_change
+
+{txt}Dickey–Fuller test for unit root{col 43}Number of obs  = {res}{ralign 3:247}
+{txt}Variable: {res}gdp_change{txt}{col 43}Number of lags = {res}{ralign 3:0}
+
+{txt}H0: Random walk without drift, d = 0
+
+{col 40}Dickey–Fuller
+{col 20}Test{col 30}{hline 8} critical value {hline 9}
+              statistic           1%           5%          10%
+{hline 62}
+ Z(t)       {res}    -15.329       -3.461       -2.880       -2.570
+{txt}{hline 62}
+MacKinnon approximate {it:p}-value for Z(t) = {res}0.0000{txt}.
+
+{com}. ** p = 0; stationary, so d = 0
+. 
+. corrgram gdp_change, lags(20)
+
+{txt}{col 43}-1       0       1 -1       0       1
+ LAG       AC       PAC      Q     Prob>Q  [Autocorrelation]  [Partial autocor]
+{hline 79}
+1     {res}{col 9} 0.0212{col 18} 0.0212{col 27} .11246{col 36}0.7374{col 44}        {c |}        {col 63}        {c |}        
+{txt}2     {res}{col 9} 0.0935{col 18} 0.0931{col 27} 2.3177{col 36}0.3139{col 44}        {c |}        {col 63}        {c |}        
+{txt}3     {res}{col 9} 0.0412{col 18} 0.0378{col 27} 2.7467{col 36}0.4324{col 44}        {c |}        {col 63}        {c |}        
+{txt}4     {res}{col 9} 0.0449{col 18} 0.0353{col 27} 3.2585{col 36}0.5155{col 44}        {c |}        {col 63}        {c |}        
+{txt}5     {res}{col 9} 0.0038{col 18}-0.0050{col 27} 3.2621{col 36}0.6597{col 44}        {c |}        {col 63}        {c |}        
+{txt}6     {res}{col 9}-0.0336{col 18}-0.0426{col 27} 3.5521{col 36}0.7370{col 44}        {c |}        {col 63}        {c |}        
+{txt}7     {res}{col 9}-0.0416{col 18}-0.0443{col 27} 3.9965{col 36}0.7802{col 44}        {c |}        {col 63}        {c |}        
+{txt}8     {res}{col 9}-0.0221{col 18}-0.0162{col 27} 4.1223{col 36}0.8459{col 44}        {c |}        {col 63}        {c |}        
+{txt}9     {res}{col 9} 0.0109{col 18} 0.0219{col 27}  4.153{col 36}0.9011{col 44}        {c |}        {col 63}        {c |}        
+{txt}10    {res}{col 9} 0.0112{col 18} 0.0212{col 27} 4.1856{col 36}0.9386{col 44}        {c |}        {col 63}        {c |}        
+{txt}11    {res}{col 9} 0.0076{col 18} 0.0099{col 27} 4.2007{col 36}0.9637{col 44}        {c |}        {col 63}        {c |}        
+{txt}12    {res}{col 9}-0.0433{col 18}-0.0487{col 27} 4.6937{col 36}0.9674{col 44}        {c |}        {col 63}        {c |}        
+{txt}13    {res}{col 9}-0.0405{col 18}-0.0495{col 27} 5.1275{col 36}0.9723{col 44}        {c |}        {col 63}        {c |}        
+{txt}14    {res}{col 9}-0.0438{col 18}-0.0455{col 27} 5.6366{col 36}0.9748{col 44}        {c |}        {col 63}        {c |}        
+{txt}15    {res}{col 9}-0.0531{col 18}-0.0476{col 27} 6.3869{col 36}0.9725{col 44}        {c |}        {col 63}        {c |}        
+{txt}16    {res}{col 9} 0.0240{col 18} 0.0399{col 27} 6.5406{col 36}0.9811{col 44}        {c |}        {col 63}        {c |}        
+{txt}17    {res}{col 9}-0.0390{col 18}-0.0334{col 27} 6.9481{col 36}0.9842{col 44}        {c |}        {col 63}        {c |}        
+{txt}18    {res}{col 9} 0.0278{col 18} 0.0853{col 27} 7.1558{col 36}0.9887{col 44}        {c |}        {col 63}        {c |}        
+{txt}19    {res}{col 9} 0.0064{col 18}-0.0004{col 27} 7.1668{col 36}0.9933{col 44}        {c |}        {col 63}        {c |}        
+{txt}20    {res}{col 9} 0.0501{col 18} 0.0661{col 27} 7.8504{col 36}0.9928{col 44}        {c |}        {col 63}        {c |}        
+{txt}
+{com}. ** the PAC doesn't show a clear sharp cutoff at low lags, implying a lower value for p
+. ** the AC remains small across most lags, with no strong peaks, suggesting a small q
+. 
+. arima gdp_change, ar(1) ma(1)
+
+{txt}(setting optimization to BHHH)
+{res}{txt}Iteration 0:  Log likelihood = {res}-367.52697{txt}  
+{res}{txt}Iteration 1:  Log likelihood = {res}-367.30998{txt}  
+{res}{txt}Iteration 2:  Log likelihood = {res}-367.29524{txt}  
+{res}{txt}Iteration 3:  Log likelihood = {res}-367.21236{txt}  
+{res}{txt}Iteration 4:  Log likelihood = {res}-367.18812{txt}  
+{res}{txt}(switching optimization to BFGS)
+{res}{txt}Iteration 5:  Log likelihood = {res}-367.16376{txt}  
+{res}{txt}Iteration 6:  Log likelihood = {res}-367.11969{txt}  
+{res}{txt}Iteration 7:  Log likelihood = {res} -367.0839{txt}  
+{res}{txt}Iteration 8:  Log likelihood = {res}-367.06061{txt}  
+{res}{txt}Iteration 9:  Log likelihood = {res}-367.04673{txt}  
+{res}{txt}Iteration 10: Log likelihood = {res}-367.04341{txt}  
+{res}{txt}Iteration 11: Log likelihood = {res}-367.04329{txt}  
+{res}{txt}Iteration 12: Log likelihood = {res}-367.04329{txt}  
+{res}
+{txt}ARIMA regression
+
+Sample: {res}1962q4 {txt}thru{res} 2024q3 {col 49}{txt}Number of obs{col 67}={res}{col 69}       248
+                                                {txt}Wald chi2({res}2{txt})      =  {res}    14.02
+{txt}Log likelihood = {res}-367.0433                      {txt}Prob > chi2       =     {res}0.0009
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}      OPG
+{col 1}  gdp_change{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}gdp_change   {txt}{c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .7372442{col 26}{space 2} .0848446{col 37}{space 1}    8.69{col 46}{space 3}0.000{col 54}{space 4} .5709518{col 67}{space 3} .9035366
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}ARMA         {txt}{c |}
+{space 10}ar {c |}
+{space 9}L1. {c |}{col 14}{res}{space 2}-.9409235{col 26}{space 2} .2932343{col 37}{space 1}   -3.21{col 46}{space 3}0.001{col 54}{space 4}-1.515652{col 67}{space 3}-.3661949
+{txt}{space 12} {c |}
+{space 10}ma {c |}
+{space 9}L1. {c |}{col 14}{res}{space 2} .9300972{col 26}{space 2} .3038484{col 37}{space 1}    3.06{col 46}{space 3}0.002{col 54}{space 4} .3345653{col 67}{space 3} 1.525629
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+      /sigma {c |}{col 14}{res}{space 2} 1.062962{col 26}{space 2} .0154431{col 37}{space 1}   68.83{col 46}{space 3}0.000{col 54}{space 4} 1.032694{col 67}{space 3}  1.09323
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 79}Note: The test of the variance against zero is one sided, and the two-sided confidence interval is truncated at zero.{p_end}
+
+{com}. ** prob > chi2 = 0.0009
+. 
+. arima gdp_change, ar(2) ma(1)
+
+{txt}(setting optimization to BHHH)
+{res}{txt}Iteration 0:  Log likelihood = {res}-366.54514{txt}  
+{res}{txt}Iteration 1:  Log likelihood = {res}-366.45625{txt}  
+{res}{txt}Iteration 2:  Log likelihood = {res} -366.4098{txt}  
+{res}{txt}Iteration 3:  Log likelihood = {res}-366.38065{txt}  
+{res}{txt}Iteration 4:  Log likelihood = {res}-366.37254{txt}  
+{res}{txt}(switching optimization to BFGS)
+{res}{txt}Iteration 5:  Log likelihood = {res}-366.35613{txt}  
+{res}{txt}Iteration 6:  Log likelihood = {res}-366.25518{txt}  
+{res}{txt}Iteration 7:  Log likelihood = {res}-366.10974{txt}  
+{res}{txt}Iteration 8:  Log likelihood = {res}-366.04357{txt}  
+{res}{txt}Iteration 9:  Log likelihood = {res}-366.04312{txt}  
+{res}{txt}Iteration 10: Log likelihood = {res}-366.04285{txt}  
+{res}{txt}Iteration 11: Log likelihood = {res} -366.0427{txt}  
+{res}{txt}Iteration 12: Log likelihood = {res} -366.0427{txt}  
+{res}
+{txt}ARIMA regression
+
+Sample: {res}1962q4 {txt}thru{res} 2024q3 {col 49}{txt}Number of obs{col 67}={res}{col 69}       248
+                                                {txt}Wald chi2({res}2{txt})      =  {res}     3.08
+{txt}Log likelihood = {res}-366.0427                      {txt}Prob > chi2       =     {res}0.2147
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}      OPG
+{col 1}  gdp_change{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}gdp_change   {txt}{c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .7371553{col 26}{space 2} .1045344{col 37}{space 1}    7.05{col 46}{space 3}0.000{col 54}{space 4} .5322717{col 67}{space 3}  .942039
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}ARMA         {txt}{c |}
+{space 10}ar {c |}
+{space 9}L2. {c |}{col 14}{res}{space 2}  .092221{col 26}{space 2} .0766039{col 37}{space 1}    1.20{col 46}{space 3}0.229{col 54}{space 4}-.0579199{col 67}{space 3}  .242362
+{txt}{space 12} {c |}
+{space 10}ma {c |}
+{space 9}L1. {c |}{col 14}{res}{space 2} .0157421{col 26}{space 2}   .02638{col 37}{space 1}    0.60{col 46}{space 3}0.551{col 54}{space 4}-.0359618{col 67}{space 3}  .067446
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+      /sigma {c |}{col 14}{res}{space 2} 1.058662{col 26}{space 2} .0158934{col 37}{space 1}   66.61{col 46}{space 3}0.000{col 54}{space 4} 1.027511{col 67}{space 3} 1.089812
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 79}Note: The test of the variance against zero is one sided, and the two-sided confidence interval is truncated at zero.{p_end}
+
+{com}. ** prob > chi2 = 0.2147
+. 
+. arima gdp_change, ar(3) ma(1)
+
+{txt}(setting optimization to BHHH)
+{res}{txt}Iteration 0:  Log likelihood = {res}-367.24818{txt}  
+{res}{txt}Iteration 1:  Log likelihood = {res}-367.19154{txt}  
+{res}{txt}Iteration 2:  Log likelihood = {res}-367.15223{txt}  
+{res}{txt}Iteration 3:  Log likelihood = {res}-367.12205{txt}  
+{res}{txt}Iteration 4:  Log likelihood = {res}-367.10016{txt}  
+{res}{txt}(switching optimization to BFGS)
+{res}{txt}Iteration 5:  Log likelihood = {res}-367.07913{txt}  
+{res}{txt}Iteration 6:  Log likelihood = {res}-367.03341{txt}  
+{res}{txt}Iteration 7:  Log likelihood = {res}-366.93361{txt}  
+{res}{txt}Iteration 8:  Log likelihood = {res}-366.92245{txt}  
+{res}{txt}Iteration 9:  Log likelihood = {res}-366.92156{txt}  
+{res}{txt}Iteration 10: Log likelihood = {res}-366.92151{txt}  
+{res}{txt}Iteration 11: Log likelihood = {res}-366.92146{txt}  
+{res}{txt}Iteration 12: Log likelihood = {res}-366.92145{txt}  
+{res}
+{txt}ARIMA regression
+
+Sample: {res}1962q4 {txt}thru{res} 2024q3 {col 49}{txt}Number of obs{col 67}={res}{col 69}       248
+                                                {txt}Wald chi2({res}2{txt})      =  {res}     0.54
+{txt}Log likelihood = {res}-366.9215                      {txt}Prob > chi2       =     {res}0.7641
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}      OPG
+{col 1}  gdp_change{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}gdp_change   {txt}{c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .7371939{col 26}{space 2} .0973507{col 37}{space 1}    7.57{col 46}{space 3}0.000{col 54}{space 4}   .54639{col 67}{space 3} .9279979
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}ARMA         {txt}{c |}
+{space 10}ar {c |}
+{space 9}L3. {c |}{col 14}{res}{space 2} .0389426{col 26}{space 2} .0778972{col 37}{space 1}    0.50{col 46}{space 3}0.617{col 54}{space 4} -.113733{col 67}{space 3} .1916183
+{txt}{space 12} {c |}
+{space 10}ma {c |}
+{space 9}L1. {c |}{col 14}{res}{space 2} .0133035{col 26}{space 2} .0240568{col 37}{space 1}    0.55{col 46}{space 3}0.580{col 54}{space 4}-.0338469{col 67}{space 3}  .060454
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+      /sigma {c |}{col 14}{res}{space 2} 1.062447{col 26}{space 2} .0155436{col 37}{space 1}   68.35{col 46}{space 3}0.000{col 54}{space 4} 1.031982{col 67}{space 3} 1.092912
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 79}Note: The test of the variance against zero is one sided, and the two-sided confidence interval is truncated at zero.{p_end}
+
+{com}. ** prob > chi2 = 0.7641
+. 
+. arima gdp_change, ar(3) ma(2)
+
+{txt}(setting optimization to BHHH)
+{res}{txt}Iteration 0:  Log likelihood = {res} -366.1638{txt}  
+{res}{txt}Iteration 1:  Log likelihood = {res}-366.12597{txt}  
+{res}{txt}Iteration 2:  Log likelihood = {res} -366.1049{txt}  
+{res}{txt}Iteration 3:  Log likelihood = {res}-366.08571{txt}  
+{res}{txt}Iteration 4:  Log likelihood = {res}-366.07083{txt}  
+{res}{txt}(switching optimization to BFGS)
+{res}{txt}Iteration 5:  Log likelihood = {res}-366.05639{txt}  
+{res}{txt}Iteration 6:  Log likelihood = {res}-366.02913{txt}  
+{res}{txt}Iteration 7:  Log likelihood = {res}-365.98214{txt}  
+{res}{txt}Iteration 8:  Log likelihood = {res}-365.97831{txt}  
+{res}{txt}Iteration 9:  Log likelihood = {res}-365.96841{txt}  
+{res}{txt}Iteration 10: Log likelihood = {res} -365.9684{txt}  
+{res}
+{txt}ARIMA regression
+
+Sample: {res}1962q4 {txt}thru{res} 2024q3 {col 49}{txt}Number of obs{col 67}={res}{col 69}       248
+                                                {txt}Wald chi2({res}2{txt})      =  {res}     2.00
+{txt}Log likelihood = {res}-365.9684                      {txt}Prob > chi2       =     {res}0.3670
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}      OPG
+{col 1}  gdp_change{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}gdp_change   {txt}{c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .7371507{col 26}{space 2}  .091537{col 37}{space 1}    8.05{col 46}{space 3}0.000{col 54}{space 4} .5577415{col 67}{space 3}   .91656
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}ARMA         {txt}{c |}
+{space 10}ar {c |}
+{space 9}L3. {c |}{col 14}{res}{space 2} .0390869{col 26}{space 2}  .092221{col 37}{space 1}    0.42{col 46}{space 3}0.672{col 54}{space 4}-.1416629{col 67}{space 3} .2198366
+{txt}{space 12} {c |}
+{space 10}ma {c |}
+{space 9}L2. {c |}{col 14}{res}{space 2} .0844486{col 26}{space 2} .0649375{col 37}{space 1}    1.30{col 46}{space 3}0.193{col 54}{space 4}-.0428267{col 67}{space 3} .2117238
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+      /sigma {c |}{col 14}{res}{space 2} 1.058322{col 26}{space 2} .0152993{col 37}{space 1}   69.17{col 46}{space 3}0.000{col 54}{space 4} 1.028336{col 67}{space 3} 1.088308
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 79}Note: The test of the variance against zero is one sided, and the two-sided confidence interval is truncated at zero.{p_end}
+
+{com}. ** prob > chi2 = 0.3670
+. 
+. ** therefore, best model is arima gdp_change, ar(3) ma(1)
+. arima gdp_change, ar(3) ma(1)
+
+{txt}(setting optimization to BHHH)
+{res}{txt}Iteration 0:  Log likelihood = {res}-367.24818{txt}  
+{res}{txt}Iteration 1:  Log likelihood = {res}-367.19154{txt}  
+{res}{txt}Iteration 2:  Log likelihood = {res}-367.15223{txt}  
+{res}{txt}Iteration 3:  Log likelihood = {res}-367.12205{txt}  
+{res}{txt}Iteration 4:  Log likelihood = {res}-367.10016{txt}  
+{res}{txt}(switching optimization to BFGS)
+{res}{txt}Iteration 5:  Log likelihood = {res}-367.07913{txt}  
+{res}{txt}Iteration 6:  Log likelihood = {res}-367.03341{txt}  
+{res}{txt}Iteration 7:  Log likelihood = {res}-366.93361{txt}  
+{res}{txt}Iteration 8:  Log likelihood = {res}-366.92245{txt}  
+{res}{txt}Iteration 9:  Log likelihood = {res}-366.92156{txt}  
+{res}{txt}Iteration 10: Log likelihood = {res}-366.92151{txt}  
+{res}{txt}Iteration 11: Log likelihood = {res}-366.92146{txt}  
+{res}{txt}Iteration 12: Log likelihood = {res}-366.92145{txt}  
+{res}
+{txt}ARIMA regression
+
+Sample: {res}1962q4 {txt}thru{res} 2024q3 {col 49}{txt}Number of obs{col 67}={res}{col 69}       248
+                                                {txt}Wald chi2({res}2{txt})      =  {res}     0.54
+{txt}Log likelihood = {res}-366.9215                      {txt}Prob > chi2       =     {res}0.7641
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}      OPG
+{col 1}  gdp_change{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}gdp_change   {txt}{c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .7371939{col 26}{space 2} .0973507{col 37}{space 1}    7.57{col 46}{space 3}0.000{col 54}{space 4}   .54639{col 67}{space 3} .9279979
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}ARMA         {txt}{c |}
+{space 10}ar {c |}
+{space 9}L3. {c |}{col 14}{res}{space 2} .0389426{col 26}{space 2} .0778972{col 37}{space 1}    0.50{col 46}{space 3}0.617{col 54}{space 4} -.113733{col 67}{space 3} .1916183
+{txt}{space 12} {c |}
+{space 10}ma {c |}
+{space 9}L1. {c |}{col 14}{res}{space 2} .0133035{col 26}{space 2} .0240568{col 37}{space 1}    0.55{col 46}{space 3}0.580{col 54}{space 4}-.0338469{col 67}{space 3}  .060454
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+      /sigma {c |}{col 14}{res}{space 2} 1.062447{col 26}{space 2} .0155436{col 37}{space 1}   68.35{col 46}{space 3}0.000{col 54}{space 4} 1.031982{col 67}{space 3} 1.092912
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 79}Note: The test of the variance against zero is one sided, and the two-sided confidence interval is truncated at zero.{p_end}
+
+{com}. estimates store arima_model  // store the results
+{txt}
+{com}. 
+. 
+. *******************************************************************************
+. 
+{txt}end of do-file
+
+{com}. 
